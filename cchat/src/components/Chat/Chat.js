@@ -20,27 +20,25 @@ function Chat() {
     }
     useEffect(() => {
         socket = socketIO(ENDPOINT, { transports: ["websocket"] });
-
-        socket.on("connect", function () {
-            setId(socket.id);
-        });
         socket.emit('joined', { user: user });
-        socket.on("welcome", (data) => {
-            setMessages([...messages, data]);
-        });
-        socket.on("userJoined", (data) => {
-            console.log(data);
-            setMessages([...messages, data]);
-        });
-        socket.on("userLeft", (data) => {
-            setMessages([...messages, data]);
-        });
         return () => {
             socket.disconnect();
         }
     }, []);
     useEffect(() => {
+        socket.on("connect", function () {
+            setId(socket.id);
+        });
         socket.on("sendMessage", function (data) {
+            setMessages([...messages, data]);
+        });
+        socket.on("welcome", (data) => {
+            setMessages([...messages, data]);
+        });
+        socket.on("userJoined", (data) => {
+            setMessages([...messages, data]);
+        });
+        socket.on("userLeft", (data) => {
             setMessages([...messages, data]);
         });
         return () => {

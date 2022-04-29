@@ -16,8 +16,8 @@ app.get("/", function (req, res) {
 io.on("connection", function (socket) {
     socket.on("joined", function ({ user }) {
         users[socket.id] = user;
-        socket.emit("welcome", { user: "Admin", message: `Welcome to the chat, ${users[socket.id]}` });
-        socket.broadcast.emit("userJoined", { user: "Admin", message: `${users[socket.id]} has joined` });
+        socket.emit("welcome", { user: "Admin", message: `You joined the chat` });
+        socket.broadcast.emit("userJoined", { user: "Admin", message: `${users[socket.id]} joined the chat` });
     });
     socket.on("message", function ({ message, id }) {
         io.emit("sendMessage", { user: users[id], message: message, id: id });

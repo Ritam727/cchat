@@ -2,11 +2,19 @@ import React from "react";
 import "./Message.css";
 
 function Message({ user, message, cl }) {
-    return (
-        <div className={`messageBox ${cl}`}>
-            {`${user}: ${message}`}
-        </div>
-    );
+    if(user === "Admin") {
+        return (
+            <div className={`messageBox notif`}>
+                {`${message}`}
+            </div>
+        );
+    } else {
+        return (
+            <div className={`messageBox ${cl}`}>
+                {`${user}: ${message}`}
+            </div>
+        );
+    }
 }
 
 export default Message;
