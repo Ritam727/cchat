@@ -27,6 +27,6 @@ io.on("connection", function (socket) {
     });
 });
 
-server.listen(4000, function () {
-    console.log("Server running at port 4000");
+server.listen(process.env.PORT, function () {
+    console.log("Server running");
 });

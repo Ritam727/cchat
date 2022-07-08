@@ -7,7 +7,7 @@ import Message from "../Message/Message";
 import ReactScrollToBottom from "react-scroll-to-bottom";
 import closeIcon from "../../images/closeIcon.png";
 
-const ENDPOINT = "http://localhost:4000";
+const ENDPOINT = "https://cchat-backend.herokuapp.com/";
 let socket;
 
 function Chat() {
